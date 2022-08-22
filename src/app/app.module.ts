@@ -17,12 +17,17 @@ import { FormsModule } from '@angular/forms';
 import { CompanyListComponent } from './company/company-list/company-list.component';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input'
+import { ContactEditComponent } from './contact/contact-edit/contact-edit.component';
+import { ContactListComponent } from './contact/contact-list/contact-list.component';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
     AppComponent,
     CompanyEditComponent,
-    CompanyListComponent
+    CompanyListComponent,
+    ContactEditComponent,
+    ContactListComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,6 +43,7 @@ import {MatInputModule} from '@angular/material/input'
     FormsModule,
     MatIconModule,
     MatInputModule,
+    MatSelectModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
