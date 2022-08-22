@@ -16,6 +16,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { CompanyListComponent } from './company/company-list/company-list.component';
 import {MatIconModule} from '@angular/material/icon';
+import {MatInputModule} from '@angular/material/input'
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import {MatIconModule} from '@angular/material/icon';
     MatFormFieldModule,
     FormsModule,
     MatIconModule,
+    MatInputModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

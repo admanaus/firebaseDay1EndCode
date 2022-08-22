@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Company } from '../../models/company';
 import { CompanyService } from '../company.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-company-edit',
@@ -15,7 +15,9 @@ export class CompanyEditComponent implements OnInit {
 
   constructor(
     private companyService: CompanyService, 
-    private activatedRoute: ActivatedRoute ) {
+    private activatedRoute: ActivatedRoute,
+    private router: Router
+     ) {
       if (!this.isNew) {
         this.company$ = companyService.getCompanyObservable(this.id);
       } else {
@@ -34,18 +36,20 @@ export class CompanyEditComponent implements OnInit {
   }
 
   saveCompany(company) {
-    // this.companyService.saveCompany(company);
-    this.companyService.saveCompany({name: company.name});
+    this.companyService.saveCompany({name: company.name})
+    .then(_ => this.router.navigate(['/company/all']));;;
   }
 
   editCompany(company) {
     this.companyService.editCompany({
       name: "The Auto Company",
-      phone: '123-456-7890'});
+      phone: '123-456-7890'})
+      .then(_ => this.router.navigate(['/company/all']));;;
   }
 
   deleteCompany() {
-    this.companyService.deleteCompany();
+    this.companyService.deleteCompany(this.id)
+    .then(_ => this.router.navigate(['/company/all']));;
   }
 
 }
