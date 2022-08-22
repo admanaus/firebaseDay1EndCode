@@ -16,8 +16,8 @@ export class CompanyService {
     this.companiesRef = this.db.collection<Company>('companies');
   }
 
-  getCompanyObservable(): Observable<Company | undefined> {
-    return this.companyRef.valueChanges();
+  getCompanyObservable(id: string): Observable<Company> {
+    return this.db.doc<Company>(`companies/${id}`).valueChanges();
   }
 
   getCompaniesObservable(): Observable<Company[]> {
@@ -36,11 +36,15 @@ export class CompanyService {
   }
 
   saveCompany(company: Company) {
-    this.companyRef.set(company);
+    this.companiesRef.add(company)
+      .then(_ => console.log('success on add'))
+      .catch(error => console.log('add', error));
   }
 
-  editCompany(company: any) {
-    this.companyRef.update(company);
+  editCompany(company: Company) {
+    this.companiesRef.doc(company.id).update(company)
+      .then(_ => console.log('Success on update'))
+      .catch(error => console.log('update', error));
   }
 
   deleteCompany() {
